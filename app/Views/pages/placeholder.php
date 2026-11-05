@@ -1,0 +1,1 @@
+<section class="welcome-row"><div><p class="eyebrow">SELVAR CRM</p><h1><?= e($title??'Seção') ?></h1><p class="muted"><?= e($description??'') ?></p></div></section><section class="card placeholder-card"><div class="empty-state">Esta área está pronta para integração com as tabelas existentes. Nenhum dado foi presumido.</div></section>

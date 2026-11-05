@@ -1,0 +1,27 @@
+:root {
+    font-family: "Outfit", sans-serif;
+    color: #17213b;
+    background: #eceef4;
+    --navy: #0f1a3a;
+    --blue: #2f55d4;
+    --amber: #e5972b;
+    --green: #1f9d6b;
+    --red: #d64545;
+    --ink: #17213b;
+    --muted: #8991a5;
+    --surface: #fff;
+    --page: #eceef4;
+    --line: #edf0f5;
+    --radius: 20px;
+    --shadow: 0 10px 35px rgba(24, 36, 75, .055)
+}
+
+[data-theme=dark] {
+    --ink: #edf1ff;
+    --muted: #9ca8c2;
+    --surface: #17213b;
+    --page: #0c1428;
+    --line: #293550;
+    --shadow: 0 10px 35px rgba(0, 0, 0, .18);
+    color: var(--ink)
+}

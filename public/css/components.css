@@ -1,0 +1,146 @@
+.kpi-card,
+.quota-card,
+.copilot-card {
+    position: relative
+}
+
+.section-heading,
+.quota-heading {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px
+}
+
+.empty-state {
+    padding: 18px 12px;
+    text-align: center;
+    color: var(--muted);
+    font-size: 12px;
+    background: color-mix(in srgb, var(--page) 65%, transparent);
+    border: 1px dashed var(--line);
+    border-radius: 12px
+}
+
+.segmented-control {
+    display: flex;
+    background: var(--page);
+    border-radius: 8px;
+    padding: 3px
+}
+
+.segmented-control button {
+    background: transparent;
+    color: var(--muted);
+    padding: 6px 9px;
+    border-radius: 6px;
+    font-size: 10px
+}
+
+.segmented-control button.active {
+    background: var(--surface);
+    color: var(--ink);
+    box-shadow: var(--shadow)
+}
+
+.suggestion {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    font-size: 12px
+}
+
+.suggestion button {
+    margin-left: auto;
+    background: none;
+    color: var(--muted);
+    font-size: 19px
+}
+
+.chat-form {
+    display: flex;
+    gap: 8px;
+    border: 1px solid var(--line);
+    border-radius: 11px;
+    padding: 5px;
+    margin-top: 15px
+}
+
+.chat-form input {
+    min-width: 0;
+    flex: 1;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    padding: 8px;
+    color: var(--ink)
+}
+
+.chat-form button {
+    width: 34px;
+    height: 34px;
+    border-radius: 8px;
+    background: var(--blue);
+    color: #fff
+}
+
+.forecast-pill {
+    border: 1px dashed var(--amber);
+    border-radius: 20px;
+    padding: 8px 12px;
+    font-size: 11px
+}
+
+.quota-legend {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    font-size: 10px;
+    color: var(--muted);
+    padding: 12px 0
+}
+
+.quota-stats {
+    display: flex;
+    gap: 40px;
+    border-top: 1px solid var(--line);
+    padding-top: 15px
+}
+
+.quota-stats small,
+.quota-stats b {
+    display: block
+}
+
+.quota-stats small {
+    font-size: 10px;
+    color: var(--muted)
+}
+
+.quota-stats b {
+    font-size: 15px;
+    margin-top: 5px
+}
+
+.placeholder-card {
+    min-height: 250px
+}
+
+#toast-region {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    z-index: 50
+}
+
+.toast {
+    background: #14213f;
+    color: #fff;
+    padding: 12px 17px;
+    border-radius: 10px;
+    box-shadow: var(--shadow);
+    margin-top: 8px
+}

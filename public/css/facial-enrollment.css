@@ -1,0 +1,145 @@
+/* Cadastro facial disponível exclusivamente no dashboard inicial. */
+.facial-dashboard-entry {
+    display:flex; align-items:center; gap:16px; margin:0 0 16px; padding:16px 18px;
+    border:1px solid var(--line); border-radius:14px; background:var(--surface);
+    box-shadow:var(--shadow); color:var(--ink);
+}
+.facial-entry-icon {
+    width:48px; height:48px; flex:0 0 48px; display:grid; place-items:center;
+    border-radius:13px; background:color-mix(in srgb, var(--blue) 11%, var(--surface));
+    color:var(--blue); font-size:21px;
+}
+.facial-entry-copy { min-width:0; flex:1; }
+.facial-entry-kicker,.facial-panel-kicker {
+    display:block; margin-bottom:4px; color:var(--muted); font-size:9px;
+    font-weight:800; letter-spacing:.13em;
+}
+.facial-entry-copy h2 { margin:0 0 4px; color:var(--ink); font-size:14px; font-weight:750; }
+.facial-entry-copy p { margin:0; color:var(--muted); font-size:11px; line-height:1.5; }
+.facial-entry-button,.facial-search-row button,.facial-start-button {
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    border:0; border-radius:9px; padding:11px 15px; background:var(--blue);
+    color:#fff; font:700 11px "Outfit",sans-serif; cursor:pointer; white-space:nowrap;
+}
+.facial-entry-button:hover,.facial-search-row button:hover,.facial-start-button:hover:not(:disabled) { filter:brightness(1.08); }
+.facial-modal[hidden] { display:none !important; }
+.facial-modal { position:fixed; inset:0; z-index:1000; display:grid; place-items:center; padding:20px; }
+.facial-modal-backdrop { position:absolute; inset:0; background:rgba(5,12,28,.68); backdrop-filter:blur(4px); }
+.facial-modal-dialog {
+    position:relative; z-index:1; width:min(100%,980px); max-height:min(92vh,900px); overflow:auto;
+    border:1px solid var(--line); border-radius:18px; background:var(--surface);
+    color:var(--ink); box-shadow:0 25px 90px rgba(0,0,0,.28);
+}
+.facial-modal-header {
+    display:flex; align-items:flex-start; justify-content:space-between; gap:18px;
+    padding:22px 24px; border-bottom:1px solid var(--line);
+}
+.facial-modal-header h2 { margin:2px 0 5px; color:var(--ink); font-size:20px; }
+.facial-modal-header p { margin:0; color:var(--muted); font-size:11px; line-height:1.5; }
+.facial-modal-close {
+    width:34px; height:34px; flex:0 0 34px; border:1px solid var(--line);
+    border-radius:9px; background:var(--page); color:var(--muted); font-size:23px; cursor:pointer;
+}
+.facial-modal-content { padding:22px 24px 24px; }
+.facial-enrollment-grid { display:grid; grid-template-columns:minmax(0,1.35fr) minmax(240px,.65fr); gap:16px; }
+.facial-enrollment-panel,.facial-enrollment-info {
+    min-width:0; padding:19px; border:1px solid var(--line); border-radius:13px; background:var(--page);
+}
+.facial-enrollment-panel h3,.facial-capture-panel h3 { margin:0 0 6px; color:var(--ink); font-size:16px; }
+.facial-enrollment-panel>p,.facial-capture-panel header p {
+    margin:0 0 15px; color:var(--muted); font-size:11px; line-height:1.55;
+}
+.facial-search-row { display:flex; gap:8px; }
+.facial-search-row input {
+    min-width:0; flex:1; height:40px; padding:0 12px; border:1px solid var(--line);
+    border-radius:9px; outline:0; background:var(--surface); color:var(--ink); font:11px "Outfit",sans-serif;
+}
+.facial-search-row input:focus { border-color:var(--blue); box-shadow:0 0 0 3px color-mix(in srgb,var(--blue) 12%,transparent); }
+.facial-search-row button { padding:0 13px; }
+.facial-employee-results { display:flex; flex-direction:column; gap:6px; max-height:210px; overflow:auto; margin-top:12px; }
+.facial-employee-result {
+    width:100%; display:flex; align-items:center; gap:10px; padding:9px 10px;
+    border:1px solid var(--line); border-radius:9px; background:var(--surface); color:var(--ink);
+    text-align:left; cursor:pointer;
+}
+.facial-employee-result:hover,.facial-employee-result.is-selected { border-color:var(--blue); background:color-mix(in srgb,var(--blue) 6%,var(--surface)); }
+.facial-employee-avatar { width:30px; height:30px; flex:0 0 30px; display:grid; place-items:center; border-radius:8px; background:color-mix(in srgb,var(--blue) 12%,var(--surface)); color:var(--blue); }
+.facial-employee-name { min-width:0; flex:1; display:flex; flex-direction:column; gap:3px; }
+.facial-employee-name strong { overflow:hidden; text-overflow:ellipsis; white-space:nowrap; font-size:11px; }
+.facial-employee-name small { color:var(--muted); font-size:9px; }
+.facial-employee-status { color:var(--muted); font-size:8px; font-weight:800; white-space:nowrap; }
+.facial-empty { padding:13px; border:1px dashed var(--line); border-radius:9px; color:var(--muted); text-align:center; font-size:10px; }
+.facial-selected-employee { display:flex; flex-direction:column; gap:3px; margin:12px 0; padding:11px 12px; border:1px solid color-mix(in srgb,var(--blue) 28%,var(--line)); border-radius:9px; background:color-mix(in srgb,var(--blue) 6%,var(--surface)); }
+.facial-selected-employee strong { font-size:12px; color:var(--ink); }
+.facial-selected-employee span { font-size:10px; color:var(--muted); }
+.facial-start-button { margin-top:13px; }
+.facial-start-button:disabled { opacity:.45; cursor:not-allowed; }
+.facial-enrollment-status { margin-top:12px; padding:10px 11px; border-radius:8px; background:var(--page); color:var(--muted); font-size:10px; line-height:1.45; }
+.facial-enrollment-status[data-type=success] { background:#eafaf1; color:#087a4b; }
+.facial-enrollment-status[data-type=error] { background:#fff0f0; color:#b42323; }
+.facial-enrollment-status[data-type=warning] { background:#fff8e8; color:#96620b; }
+.facial-enrollment-info { display:flex; flex-direction:column; justify-content:center; gap:18px; background:var(--surface); }
+.facial-enrollment-info>div { display:flex; gap:11px; align-items:flex-start; }
+.facial-enrollment-info i { width:20px; padding-top:2px; color:var(--blue); text-align:center; }
+.facial-enrollment-info span { display:flex; flex-direction:column; gap:4px; }
+.facial-enrollment-info strong { color:var(--ink); font-size:11px; }
+.facial-enrollment-info small { color:var(--muted); font-size:10px; line-height:1.5; }
+.facial-capture-panel { margin-top:17px; border:1px solid var(--line); border-radius:13px; overflow:hidden; }
+.facial-capture-panel[hidden] { display:none; }
+.facial-capture-panel>header { display:flex; justify-content:space-between; gap:15px; padding:16px 18px; border-bottom:1px solid var(--line); }
+.facial-capture-panel>header p { margin-bottom:0; }
+.facial-capture-panel>header button { width:30px; height:30px; border:1px solid var(--line); border-radius:8px; background:var(--surface); color:var(--muted); font-size:20px; cursor:pointer; }
+.facial-capture-root { min-height:260px; display:flex; justify-content:center; align-items:center; background:#0f172a; }
+.facial-local-capture { width:100%; max-width:570px; padding:18px; }
+
+.facial-camera-selector { display:flex; align-items:center; gap:10px; margin:0 0 12px; }
+.facial-camera-selector label { display:flex; align-items:center; gap:7px; flex:0 0 auto; color:#cbd5e1; font-size:11px; font-weight:700; }
+.facial-camera-selector label i { color:#93c5fd; }
+.facial-camera-selector select { min-width:0; flex:1; height:36px; padding:0 10px; border:1px solid rgba(255,255,255,.2); border-radius:8px; outline:none; background:#1e293b; color:#f8fafc; font:inherit; font-size:11px; }
+.facial-camera-selector select:disabled { opacity:.65; cursor:not-allowed; }
+@media(max-width:480px) { .facial-camera-selector { align-items:stretch; flex-direction:column; gap:6px; } .facial-camera-selector select { width:100%; } }
+
+.facial-video-wrap { position:relative; width:100%; aspect-ratio:4/3; overflow:hidden; border:1px solid rgba(255,255,255,.15); border-radius:12px; background:#020617; }
+.facial-video-wrap video { width:100%; height:100%; display:block; object-fit:cover; transform:scaleX(-1); }
+.facial-guide { position:absolute; left:50%; top:50%; width:60%; height:80%; transform:translate(-50%,-50%); border:2px solid rgba(255,255,255,.85); border-radius:50%; box-shadow:0 0 0 9999px rgba(2,6,23,.22); pointer-events:none; }
+.facial-camera-message { position:absolute; left:50%; bottom:15px; transform:translateX(-50%); max-width:calc(100% - 20px); overflow:hidden; padding:8px 12px; border-radius:99px; background:rgba(2,6,23,.75); color:#fff; font-size:10px; font-weight:700; white-space:nowrap; text-overflow:ellipsis; }
+.facial-progress { height:6px; margin-top:12px; overflow:hidden; border-radius:99px; background:#dbe2ea; }
+.facial-progress>div { width:0; height:100%; background:#3975ed; transition:width .08s linear; }
+.facial-step { margin-top:9px; color:#e5e7eb; text-align:center; font-size:11px; font-weight:700; }
+.facial-camera-note { margin:7px 0 0; color:#94a3b8; text-align:center; font-size:9px; line-height:1.5; }
+@media(max-width:760px) {
+    .facial-dashboard-entry { align-items:flex-start; flex-wrap:wrap; padding:14px; }
+    .facial-entry-copy { flex:1 1 calc(100% - 65px); }
+    .facial-entry-button { width:100%; }
+    .facial-modal { padding:8px; }
+    .facial-modal-dialog { max-height:96vh; border-radius:14px; }
+    .facial-modal-header,.facial-modal-content { padding:16px; }
+    .facial-modal-header h2 { font-size:17px; }
+    .facial-enrollment-grid { grid-template-columns:1fr; }
+    .facial-enrollment-info { display:grid; grid-template-columns:1fr; gap:12px; }
+    .facial-search-row { flex-direction:column; }
+    .facial-search-row button { min-height:38px; }
+}
+
+
+.facial-status-pill {
+    display:inline-flex; align-items:center; gap:6px; width:max-content;
+    margin-top:7px; padding:5px 9px; border-radius:999px;
+    font-size:9px; font-weight:800; letter-spacing:.02em;
+}
+.facial-status-pill.is-registered {
+    color:#16834d; background:rgba(34,197,94,.12);
+}
+.facial-status-pill.is-empty {
+    color:var(--muted); background:var(--page);
+}
+.facial-delete-button {
+    display:flex; align-items:center; justify-content:center; gap:8px;
+    width:100%; margin-top:2px; padding:10px 13px;
+    border:1px solid rgba(220,38,38,.28); border-radius:9px;
+    background:rgba(220,38,38,.06); color:#dc2626;
+    font:700 11px "Outfit",sans-serif; cursor:pointer;
+    transition:background .18s ease, opacity .18s ease;
+}
+.facial-delete-button:hover:not(:disabled) { background:rgba(220,38,38,.12); }
+.facial-delete-button:disabled { opacity:.42; cursor:not-allowed; }

@@ -1,0 +1,416 @@
+/* Cabeçalho de boas-vindas do dashboard */
+.dashboard-welcome {
+    padding: 8px 2px 2px;
+    margin-bottom: 2px;
+}
+.dashboard-date {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin: 0 0 12px;
+    color: var(--muted);
+    font-size: 10px;
+    line-height: 1.4;
+}
+.dashboard-welcome h1 {
+    margin: 0 0 7px;
+    color: var(--ink);
+    font-size: clamp(25px, 2.2vw, 32px);
+    line-height: 1.15;
+    letter-spacing: -1.1px;
+    font-weight: 700;
+}
+.dashboard-welcome-subtitle {
+    margin: 0;
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* Dashboard educacional - composição fiel à referência */
+.education-dashboard {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    width: 100%;
+}
+.education-metrics {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 16px;
+}
+.education-card {
+    min-width: 0;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    box-shadow: var(--shadow);
+    color: var(--ink);
+}
+.metric-card {
+    min-height: 118px;
+    padding: 14px 14px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.metric-main {
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    min-height: 66px;
+}
+.metric-icon {
+    flex: 0 0 47px;
+    width: 47px;
+    height: 47px;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    font-size: 20px;
+}
+.metric-icon--blue {
+    background: #e4edff;
+    color: #3268e9;
+}
+.metric-icon--green {
+    background: #dcf9e9;
+    color: #0aaf62;
+}
+.metric-copy {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1px;
+}
+.metric-copy h2 {
+    margin: 0;
+    font-size: 11px;
+    line-height: 1.3;
+    font-weight: 700;
+    color: var(--ink);
+}
+.metric-copy strong {
+    font-size: 22px;
+    line-height: 1.15;
+    letter-spacing: -.6px;
+    font-weight: 700;
+    color: var(--ink);
+}
+.metric-comparison {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 2px;
+    font-size: 10px;
+    line-height: 1.3;
+    color: #52708f;
+}
+.metric-comparison--down {
+    color: #ed4444;
+}
+.metric-comparison--neutral {
+    color: #52708f;
+}
+.education-card-link {
+    height: 34px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid var(--line);
+    font-size: 10px;
+    font-weight: 600;
+}
+.metric-link--blue {
+    color: #2460ed;
+}
+.metric-link--green {
+    color: #08a75d;
+}
+.education-card-link i,
+.education-card-heading i,
+.education-card-footer i {
+    font-size: 10px;
+}
+.education-content-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1.04fr) minmax(0, .96fr);
+    gap: 16px;
+    align-items: stretch;
+}
+.attendance-card,
+.activities-card {
+    min-height: 219px;
+    padding: 13px 14px 0;
+}
+.education-card-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    min-height: 19px;
+}
+.education-card-heading h2 {
+    margin: 0;
+    color: var(--ink);
+    font-size: 13px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+.education-card-heading a {
+    color: #1760e9;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    white-space: nowrap;
+    font-size: 9px;
+    font-weight: 600;
+}
+.attendance-content {
+    min-height: 160px;
+    display: grid;
+    grid-template-columns: minmax(150px, .78fr) minmax(0, 1.22fr);
+    align-items: center;
+    gap: 12px;
+    padding: 6px 0 3px;
+}
+.attendance-chart-wrap {
+    width: 138px;
+    height: 138px;
+    position: relative;
+    justify-self: center;
+}
+.attendance-chart-wrap canvas {
+    position: relative;
+    z-index: 1;
+    width: 100% !important;
+    height: 100% !important;
+}
+.attendance-chart-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 2;
+}
+.attendance-chart-center span {
+    font-size: 9px;
+    line-height: 1.4;
+    color: var(--muted);
+}
+.attendance-chart-center strong {
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+.attendance-legend {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+.attendance-legend-row {
+    min-height: 31px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    border-bottom: 1px solid var(--line);
+    font-size: 9px;
+}
+.attendance-legend-row:last-child {
+    border-bottom: 0;
+}
+.legend-label {
+    min-width: 0;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: #68758c;
+    white-space: nowrap;
+}
+.legend-label i {
+    width: 7px;
+    height: 7px;
+    flex: 0 0 7px;
+    border-radius: 50%;
+    background: var(--legend-color);
+}
+.legend-value {
+    color: var(--ink);
+    white-space: nowrap;
+    font-weight: 500;
+}
+.education-card-footer {
+    height: 34px;
+    border-top: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.education-card-footer a {
+    color: #1760e9;
+    font-size: 10px;
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+.education-card-footer .footer-trailing {
+    color: #1760e9;
+}
+.activity-list {
+    margin-top: 7px;
+}
+.activity-row {
+    min-height: 40px;
+    display: grid;
+    grid-template-columns: 40px 8px minmax(0, 1fr);
+    align-items: center;
+    gap: 10px;
+    border-bottom: 1px solid var(--line);
+}
+.activity-row:last-child {
+    border-bottom: 0;
+}
+.activity-date {
+    width: 40px;
+    height: 36px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 7px;
+    line-height: 1.05;
+}
+.activity-date strong {
+    font-size: 11px;
+    font-weight: 700;
+    color: #27334b;
+}
+.activity-date span {
+    margin-top: 2px;
+    font-size: 8px;
+    font-weight: 600;
+    color: #71809a;
+}
+.activity-date--blue { background: #eff5ff; }
+.activity-date--green { background: #edfaf2; }
+.activity-date--orange { background: #fff5e9; }
+.activity-date--purple { background: #f5f0ff; }
+.activity-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+}
+.activity-dot--blue { background: #2874e8; }
+.activity-dot--green { background: #21b66b; }
+.activity-dot--orange { background: #f0a11b; }
+.activity-dot--purple { background: #8747e8; }
+.activity-copy {
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+.activity-copy strong {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    font-size: 9px;
+    line-height: 1.2;
+    font-weight: 600;
+    color: var(--ink);
+}
+.activity-copy span {
+    color: #78859b;
+    font-size: 8px;
+    line-height: 1.2;
+}
+@media (max-width: 1050px) {
+    .education-content-grid {
+        grid-template-columns: 1fr;
+    }
+}
+@media (max-width: 680px) {
+    .dashboard-welcome { padding-top: 4px; }
+    .education-metrics {
+        grid-template-columns: 1fr;
+        gap: 10px;
+    }
+    .education-content-grid {
+        gap: 10px;
+    }
+    .attendance-content {
+        grid-template-columns: minmax(120px, .8fr) minmax(0, 1.2fr);
+        gap: 7px;
+    }
+    .attendance-chart-wrap {
+        width: 118px;
+        height: 118px;
+    }
+    .attendance-legend-row {
+        font-size: 8px;
+    }
+    .education-card-heading h2 {
+        font-size: 12px;
+    }
+}
+@media (max-width: 390px) {
+    .attendance-content {
+        grid-template-columns: 1fr;
+        padding: 12px 0;
+    }
+    .attendance-chart-center {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    pointer-events: none;
+    z-index: 2;
+}
+.attendance-chart-center span {
+    font-size: 9px;
+    line-height: 1.4;
+    color: var(--muted);
+}
+.attendance-chart-center strong {
+    color: var(--ink);
+    font-size: 17px;
+    line-height: 1.3;
+    font-weight: 700;
+}
+.attendance-legend {
+        width: 100%;
+    }
+}
+
+
+/* Cores dos cards acompanham o tema global */
+[data-theme="dark"] .education-card {
+    background: var(--surface);
+    border-color: var(--line);
+    color: var(--ink);
+}
+[data-theme="dark"] .metric-copy h2,
+[data-theme="dark"] .metric-copy strong,
+[data-theme="dark"] .education-card-heading h2,
+[data-theme="dark"] .activity-date strong,
+[data-theme="dark"] .activity-copy strong,
+[data-theme="dark"] .legend-value {
+    color: var(--ink);
+}
+[data-theme="dark"] .education-card-link,
+[data-theme="dark"] .education-card-footer,
+[data-theme="dark"] .attendance-legend-row,
+[data-theme="dark"] .activity-row {
+    border-color: var(--line);
+}
+[data-theme="dark"] .activity-date--blue { background: #223657; }
+[data-theme="dark"] .activity-date--green { background: #1d3b34; }
+[data-theme="dark"] .activity-date--orange { background: #453522; }
+[data-theme="dark"] .activity-date--purple { background: #34294c; }
