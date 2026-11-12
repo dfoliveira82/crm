@@ -1,24 +1,53 @@
 /* Cadastro facial disponível exclusivamente no dashboard inicial. */
+.dashboard-top-bar {
+    display:flex; align-items:stretch; gap:12px; margin:0 0 12px;
+}
+.dashboard-period-panel {
+    display:flex; align-items:stretch; flex:0 0 270px;
+}
+.dashboard-academic-toolbar {
+    display:flex; align-items:center; justify-content:flex-end; width:100%;
+    padding:0; border:1px solid var(--line); border-radius:12px; background:var(--surface);
+    box-shadow:var(--shadow);
+}
+.dashboard-academic-filters {
+    width:100%; display:flex; align-items:center; justify-content:flex-end; padding:10px 12px;
+}
+.dashboard-period-filter {
+    width:100%;
+}
+.dashboard-period-label {
+    display:inline-flex; align-items:center; gap:6px; font-size:10px; color:var(--muted); font-weight:700;
+}
+.dashboard-period-label i {
+    color:var(--blue); font-size:12px;
+}
+.dashboard-period-filter select {
+    width:100%; min-width:0; height:38px;
+}
 .facial-dashboard-entry {
-    display:flex; align-items:center; gap:16px; margin:0 0 16px; padding:16px 18px;
-    border:1px solid var(--line); border-radius:14px; background:var(--surface);
+    display:flex; align-items:center; gap:12px; flex:1 1 auto; min-width:0; margin:0;
+    padding:12px 14px; border:1px solid var(--line); border-radius:12px; background:var(--surface);
     box-shadow:var(--shadow); color:var(--ink);
 }
 .facial-entry-icon {
-    width:48px; height:48px; flex:0 0 48px; display:grid; place-items:center;
-    border-radius:13px; background:color-mix(in srgb, var(--blue) 11%, var(--surface));
-    color:var(--blue); font-size:21px;
+    width:42px; height:42px; flex:0 0 42px; display:grid; place-items:center;
+    border-radius:11px; background:color-mix(in srgb, var(--blue) 11%, var(--surface));
+    color:var(--blue); font-size:18px; overflow:hidden;
+}
+.facial-entry-icon img {
+    display:block; width:100%; height:100%; object-fit:contain; padding:6px;
 }
 .facial-entry-copy { min-width:0; flex:1; }
 .facial-entry-kicker,.facial-panel-kicker {
     display:block; margin-bottom:4px; color:var(--muted); font-size:9px;
     font-weight:800; letter-spacing:.13em;
 }
-.facial-entry-copy h2 { margin:0 0 4px; color:var(--ink); font-size:14px; font-weight:750; }
-.facial-entry-copy p { margin:0; color:var(--muted); font-size:11px; line-height:1.5; }
+.facial-entry-copy h2 { margin:0 0 2px; color:var(--ink); font-size:14px; font-weight:750; }
+.facial-entry-copy p { margin:0; color:var(--muted); font-size:11px; line-height:1.45; }
 .facial-entry-button,.facial-search-row button,.facial-start-button {
     display:inline-flex; align-items:center; justify-content:center; gap:8px;
-    border:0; border-radius:9px; padding:11px 15px; background:var(--blue);
+    border:0; border-radius:9px; padding:10px 14px; background:var(--blue);
     color:#fff; font:700 11px "Outfit",sans-serif; cursor:pointer; white-space:nowrap;
 }
 .facial-entry-button:hover,.facial-search-row button:hover,.facial-start-button:hover:not(:disabled) { filter:brightness(1.08); }

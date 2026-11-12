@@ -99,7 +99,8 @@
 
 .login-card h2 {
     font-size: 31px;
-    margin-bottom: 5px
+    margin-bottom: 5px;
+    color: #143085
 }
 
 .login-card>.muted {
@@ -110,7 +111,8 @@
     display: block;
     font-weight: 600;
     font-size: 12px;
-    margin: 17px 0 7px
+    margin: 17px 0 7px;
+    color: #143085
 }
 
 .login-card input:not([type=checkbox]) {

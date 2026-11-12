@@ -35,7 +35,7 @@
 }
 .education-metrics {
     display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 16px;
 }
 .education-card {
@@ -76,6 +76,10 @@
     background: #dcf9e9;
     color: #0aaf62;
 }
+.metric-icon--orange {
+    background: #fff1dd;
+    color: #ea8a00;
+}
 .metric-copy {
     display: flex;
     flex-direction: column;
@@ -103,13 +107,15 @@
     margin-top: 2px;
     font-size: 10px;
     line-height: 1.3;
+    font-weight: 600;
+    letter-spacing: .01em;
     color: #52708f;
 }
 .metric-comparison--down {
-    color: #ed4444;
+    color: #d93b3b;
 }
 .metric-comparison--neutral {
-    color: #52708f;
+    color: #18a35a;
 }
 .education-card-link {
     height: 34px;
@@ -125,6 +131,9 @@
 }
 .metric-link--green {
     color: #08a75d;
+}
+.metric-link--orange {
+    color: #d88400;
 }
 .education-card-link i,
 .education-card-heading i,
@@ -334,6 +343,12 @@
         grid-template-columns: 1fr;
     }
 }
+@media (max-width: 900px) {
+    .education-metrics {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+}
+
 @media (max-width: 680px) {
     .dashboard-welcome { padding-top: 4px; }
     .education-metrics {

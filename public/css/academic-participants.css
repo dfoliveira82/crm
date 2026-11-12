@@ -1,0 +1,255 @@
+.participant-page .participant-table {
+    min-width: 900px
+}
+
+.participant-section-row td {
+    padding: 15px 16px 8px;
+    border: 0;
+    background: transparent;
+    color: var(--blue);
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: .04em;
+    text-transform: uppercase
+}
+
+.participant-section-row i {
+    margin-right: 7px
+}
+
+.participant-turno-badge {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 99px;
+    padding: 5px 9px;
+    font-size: 9px;
+    font-weight: 800;
+    white-space: nowrap
+}
+
+.participant-turno-matutino {
+    background: #e8f2ff;
+    color: #1769c2
+}
+
+.participant-turno-noturno {
+    background: #eeeaff;
+    color: #5d45b5
+}
+
+.participant-turno-especial {
+    background: #fff0cc;
+    color: #a16600
+}
+
+.participant-turno-outros {
+    background: #f0f2f5;
+    color: #687586
+}
+
+.participant-discipline-list {
+    display: grid;
+    gap: 8px
+}
+
+.participant-discipline-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 11px 13px;
+    cursor: pointer
+}
+
+.participant-discipline-row.is-pending {
+    background: #fffaf0;
+    border-color: #f2dfb7
+}
+
+.participant-discipline-row input {
+    accent-color: var(--blue);
+    width: 16px;
+    height: 16px
+}
+
+.participant-discipline-row input:disabled {
+    cursor: not-allowed;
+    opacity: .45
+}
+
+.participant-discipline-name {
+    flex: 1;
+    min-width: 170px
+}
+
+.participant-discipline-name strong,
+.participant-discipline-name small {
+    display: block
+}
+
+.participant-discipline-name strong {
+    font-size: 12px
+}
+
+.participant-discipline-name small {
+    font-family: ui-monospace, monospace;
+    color: var(--muted);
+    font-size: 10px;
+    margin-top: 3px
+}
+
+.participant-integration-badge {
+    border-radius: 99px;
+    padding: 5px 8px;
+    font-size: 9px;
+    font-weight: 800;
+    white-space: nowrap;
+    text-decoration: none
+}
+
+.participant-integration-badge.is-integrated {
+    background: #dff7ea;
+    color: #087a4b
+}
+
+.participant-integration-badge.is-pending {
+    background: #fff0cc;
+    color: #a16600
+}
+
+.participant-count {
+    display: flex;
+    align-items: center;
+    gap: 7px;
+    color: var(--muted);
+    font-size: 11px;
+    white-space: nowrap
+}
+
+.participant-count i:nth-of-type(1) {
+    color: var(--blue)
+}
+
+.participant-count i:nth-of-type(2) {
+    color: var(--green)
+}
+
+.participant-enrolment-status {
+    min-width: 168px;
+    padding: 6px 9px;
+    border-radius: 7px;
+    background: #f3f6fa;
+    color: #607083;
+    font-size: 10px;
+    line-height: 1.25;
+    text-align: center;
+    white-space: nowrap
+}
+
+.participant-enrolment-status.is-loading {
+    color: var(--blue)
+}
+
+.participant-enrolment-status.is-complete {
+    background: #e8f8ef;
+    color: #087a4b
+}
+
+.participant-enrolment-status.is-partial {
+    background: #fff4d6;
+    color: #996300
+}
+
+.participant-enrolment-status.is-pending {
+    background: #fff0cc;
+    color: #a16600
+}
+
+.participant-enrolment-status.is-error {
+    background: #fdecec;
+    color: #b42318
+}
+
+.participant-result {
+    margin-top: 0
+}
+
+.academic-alert.is-success {
+    background: #e8f8ef;
+    color: #087a4b;
+    border: 1px solid #c5efd7
+}
+
+[data-theme="dark"] .participant-page .academic-detail-row {
+    background: #101a31
+}
+
+[data-theme="dark"] .participant-discipline-row {
+    background: #1b2946;
+    border-color: #344566;
+    color: #f4f7ff
+}
+
+[data-theme="dark"] .participant-discipline-row.is-integrated {
+    background: #1b3540;
+    border-color: #2d665e
+}
+
+[data-theme="dark"] .participant-discipline-row.is-pending {
+    background: #2a2b3b;
+    border-color: #6d5a35
+}
+
+[data-theme="dark"] .participant-discipline-name strong {
+    color: #f7f9ff
+}
+
+[data-theme="dark"] .participant-discipline-name small {
+    color: #aebbd5
+}
+
+[data-theme="dark"] .participant-count {
+    color: #b9c5da
+}
+
+[data-theme="dark"] .participant-enrolment-status {
+    background: #263654;
+    color: #dce6f7
+}
+
+[data-theme="dark"] .participant-enrolment-status.is-complete {
+    background: #1d473e;
+    color: #9af0c4
+}
+
+[data-theme="dark"] .participant-enrolment-status.is-partial {
+    background: #514329;
+    color: #ffe09a
+}
+
+[data-theme="dark"] .participant-enrolment-status.is-pending {
+    background: #514329;
+    color: #ffe09a
+}
+
+[data-theme="dark"] .participant-enrolment-status.is-error {
+    background: #512d37;
+    color: #ffb5c1
+}
+
+@media (max-width:900px) {
+    .participant-discipline-row {
+        flex-wrap: wrap
+    }
+
+    .participant-discipline-name {
+        min-width: calc(100% - 45px)
+    }
+
+    .participant-count,
+    .participant-enrolment-status {
+        margin-left: 28px
+    }
+}
