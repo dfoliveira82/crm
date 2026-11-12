@@ -32,10 +32,9 @@ $navigation = [
         ['label' => 'Gestão Patrimonial', 'path' => 'backoffice/gestao-patrimonial'],
     ]],
     ['label' => 'AVA', 'icon' => 'fa-book-open', 'items' => [
-        ['label' => 'Gestão de Alunos', 'path' => 'ava/gestao-de-alunos'],
         ['label' => 'Gestão de Cursos', 'path' => 'ava/gestao-de-cursos'],
         ['label' => 'Gestão de Turmas', 'path' => 'ava/gestao-de-turmas'],
-        ['label' => 'Gestão de Conteúdo', 'path' => 'ava/gestao-de-conteudo'],
+        ['label' => 'Integração AD', 'path' => 'ava/integracao-ad'],
     ]],
     ['label' => 'Suporte', 'icon' => 'fa-headset', 'items' => [
         ['label' => 'Dashboard', 'path' => 'suporte/dashboard'],
@@ -55,6 +54,12 @@ foreach ($navigation as $index => $group) {
     }
 }
 ?>
+<!--
+        ['label' => 'Gestão de Alunos', 'path' => 'ava/gestao-de-alunos'],
+        ['label' => 'Gestão de Cursos', 'path' => 'ava/gestao-de-cursos'],
+        ['label' => 'Gestão de Turmas', 'path' => 'ava/gestao-de-turmas'],
+        ['label' => 'Gestão de Conteúdo', 'path' => 'ava/gestao-de-conteudo'],
+-->
 <aside class="sidebar" id="sidebar">
     <div class="side-brand-row">
         <a class="side-brand" href="<?= e(url()) ?>" aria-label="SGU — Dashboard">
@@ -98,8 +103,14 @@ foreach ($navigation as $index => $group) {
                 </div>
             </section>
         <?php endforeach; ?>
+        <a class="side-link <?= in_array($current, ['calendar', 'agenda'], true) ? 'active' : '' ?>"
+           href="<?= e(url('calendar')) ?>" aria-label="Calendário" title="Calendário">
+            <span class="nav-icon"><i class="fa-regular fa-calendar-days" aria-hidden="true"></i></span>
+            <span class="side-link-label">Calendário</span>
+        </a>
     </nav>
 
+    <!--
     <div class="sidebar-spacer"></div>
     <div class="side-user">
         <?php if ($sideAvatar !== ''): ?>
@@ -107,6 +118,10 @@ foreach ($navigation as $index => $group) {
         <?php else: ?>
             <div class="avatar"><?= e($initials) ?></div>
         <?php endif; ?>
-        <div class="side-user-info"><b><?= e($name) ?></b><small><?= e($u['role'] ?? '') ?></small></div>
+        <div class="side-user-info">
+            <b><?= e($name) ?></b>
+            <small><?= e($u['role'] ?? '') ?></small>
+        </div>
     </div>
+    -->
 </aside>

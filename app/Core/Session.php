@@ -8,8 +8,17 @@ final class Session {
         session_name('SELVARSESSID');
         session_set_cookie_params(['lifetime'=>0,'path'=>'/','secure'=>$secure,'httponly'=>true,'samesite'=>'Lax']);
         session_start();
-        $minutes = max(5, (int)Env::get('SESSION_LIFETIME_MIN', 30));
-        if (isset($_SESSION['_last']) && time() - (int)$_SESSION['_last'] > $minutes * 60) self::destroy();
+
+        // Se a sessão expirou, limpa os dados e troca o ID sem encerrar
+        // a sessão PHP. A sessão permanece ativa para que o token CSRF
+        // gerado na página de login seja persistido corretamente.
+        $minutes = max(5, (int) Env::get('SESSION_LIFETIME_MIN', 30));
+        $lastActivity = isset($_SESSION['_last']) ? (int) $_SESSION['_last'] : 0;
+        if ($lastActivity > 0 && (time() - $lastActivity) > ($minutes * 60)) {
+            $_SESSION = [];
+            session_regenerate_id(true);
+        }
+
         $_SESSION['_last'] = time();
     }
     public static function get(string $key, mixed $default=null): mixed { return $_SESSION[$key] ?? $default; }

@@ -3,6 +3,8 @@ $dashboard = $dashboard ?? [];
 $metrics = $dashboard['metrics'] ?? [];
 $attendance = $dashboard['attendances'] ?? ['total' => 0, 'items' => []];
 $activities = $dashboard['activities'] ?? [];
+$periodId = (int) ($periodId ?? 0);
+$periodOptions = $dashboard['periodOptions'] ?? [];
 $chartLabels = array_column($attendance['items'], 'label');
 $chartValues = array_map(static fn(array $item): int => (int) $item['value'], $attendance['items']);
 $chartColors = array_column($attendance['items'], 'color');
@@ -32,23 +34,46 @@ $quarter = (int) ceil((int) date('n') / 3);
 $weekNumber = (int) date('W');
 ?>
 <section class="dashboard-welcome" aria-label="Boas-vindas">
-    <p class="dashboard-date"><i class="fa-regular fa-sun" aria-hidden="true"></i> <?= e($todayLabel) ?> · <?= e((string) $quarter) ?>º trimestre · Semana <?= e((string) $weekNumber) ?></p>
+    <p class="dashboard-date">
+        <i class="fa-regular fa-sun" aria-hidden="true"></i> 
+        <?= e($todayLabel) ?>
+    </p>
     <h1><?= e($greeting) ?>, <?= e($firstName) ?></h1>
-    <p class="dashboard-welcome-subtitle">Acompanhe seus resultados, oportunidades e prioridades comerciais.</p>
+    <p class="dashboard-welcome-subtitle">&nbsp;</p>
+    <!--<p class="dashboard-welcome-subtitle">Acompanhe seus resultados, oportunidades e prioridades comerciais.</p>-->
 </section>
 
 
-<section class="facial-dashboard-entry" aria-label="Cadastro facial de funcionários">
-    <div class="facial-entry-icon"><i class="fa-solid fa-face-viewfinder" aria-hidden="true"></i></div>
-    <div class="facial-entry-copy">
-        <span class="facial-entry-kicker">RECURSOS HUMANOS</span>
-        <h2>Cadastro Facial dos Funcionários</h2>
-        <p>Gerencie as referências faciais dos funcionários para identificação no registro de ponto.</p>
+<div class="dashboard-top-bar">
+    <section class="facial-dashboard-entry" aria-label="Cadastro facial de funcionários">
+        <div class="facial-entry-icon">
+            <img src="<?= e(asset('img/icones/ponto/ico_facial.png')) ?>" alt="Cadastro facial dos funcionários" aria-hidden="true">
+        </div>
+        <div class="facial-entry-copy">
+            <span class="facial-entry-kicker">RECURSOS HUMANOS</span>
+            <h2>Cadastro Facial dos Funcionários</h2>
+            <p>Gerencie as referências faciais dos funcionários para identificação no registro de ponto.</p>
+        </div>
+        <button type="button" class="facial-entry-button" id="open-facial-enrollment">
+            <i class="fa-solid fa-camera" aria-hidden="true"></i> Abrir cadastro facial
+        </button>
+    </section>
+
+    <div class="dashboard-period-panel">
+        <div class="academic-toolbar dashboard-academic-toolbar">
+            <div class="academic-filters dashboard-academic-filters">
+                <label class="academic-period-filter dashboard-period-filter">
+                    <span class="dashboard-period-label"><i class="fa-regular fa-notebook" aria-hidden="true"></i> Período letivo</span>
+                    <select id="dashboard-period" name="period" onchange="window.location='<?= e(url('/')) ?>?period=' + this.value">
+                        <?php foreach ($periodOptions as $option): ?>
+                            <option value="<?= e((string) ($option['IDPERLET'] ?? 0)) ?>" <?= (int) ($option['IDPERLET'] ?? 0) === $periodId ? 'selected' : '' ?>><?= e((string) ($option['CODPERLET'] ?: ($option['DESCRICAO'] ?? ''))) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </label>
+            </div>
+        </div>
     </div>
-    <button type="button" class="facial-entry-button" id="open-facial-enrollment">
-        <i class="fa-solid fa-camera" aria-hidden="true"></i> Abrir cadastro facial
-    </button>
-</section>
+</div>
 
 <div class="facial-modal" id="facial-enrollment-modal" aria-hidden="true" hidden>
     <div class="facial-modal-backdrop" data-facial-close></div>
@@ -115,7 +140,7 @@ $weekNumber = (int) date('W');
                             <?php if ($metric['direction'] === 'down'): ?>
                                 <i class="fa-solid fa-arrow-down" aria-hidden="true"></i>
                             <?php else: ?>
-                                <i class="fa-solid fa-arrow-right" aria-hidden="true"></i>
+                                <i class="fa-solid fa-arrow-up" aria-hidden="true"></i>
                             <?php endif; ?>
                             <?= e($metric['comparison']) ?>
                         </span>
@@ -131,30 +156,34 @@ $weekNumber = (int) date('W');
     <div class="education-content-grid">
         <article class="education-card attendance-card">
             <header class="education-card-heading">
-                <h2>Atendimentos / Solicitações</h2>
+                <h2>Atendimentos / Solicitações <small>(<?= e((string) ($attendance['semester'] ?? '')) ?>)</small></h2>
                 <a href="<?= e(url('educacional/atendimentos-e-aprovacoes')) ?>">Ver detalhes <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
             </header>
 
             <div class="attendance-content">
                 <div class="attendance-chart-wrap">
-                    <canvas id="attendance-donut" role="img" aria-label="Gráfico de rosca dos atendimentos e solicitações"></canvas>
+                    <canvas id="attendance-donut" role="img" aria-label="Gráfico de rosca dos atendimentos e solicitações do período <?= e((string) ($attendance['semester'] ?? '')) ?>"></canvas>
                     <div class="attendance-chart-center" aria-hidden="true">
                         <span>Total</span>
                         <strong><?= e((string) $attendance['total']) ?></strong>
                     </div>
                 </div>
-                <div class="attendance-legend">
-                    <?php foreach ($attendance['items'] as $item): ?>
-                        <div class="attendance-legend-row">
-                            <span class="legend-label"><i style="--legend-color: <?= e($item['color']) ?>"></i><?= e($item['label']) ?></span>
-                            <span class="legend-value"><?= e((string) $item['value']) ?> (<?= e($item['percent']) ?>)</span>
-                        </div>
-                    <?php endforeach; ?>
-                </div>
+                <?php if (!empty($attendance['items'])): ?>
+                    <div class="attendance-legend">
+                        <?php foreach ($attendance['items'] as $item): ?>
+                            <div class="attendance-legend-row">
+                                <span class="legend-label"><i style="--legend-color: <?= e($item['color']) ?>"></i><?= e($item['label']) ?></span>
+                                <span class="legend-value"><?= e((string) $item['value']) ?> (<?= e($item['percent']) ?>)</span>
+                            </div>
+                        <?php endforeach; ?>
+                    </div>
+                <?php else: ?>
+                    <div class="empty-state">Nenhum atendimento ou solicitação foi encontrado para o período <?= e((string) ($attendance['semester'] ?? '')) ?>.</div>
+                <?php endif; ?>
             </div>
 
             <footer class="education-card-footer">
-                <a href="<?= e(url('educacional/atendimentos-e-aprovacoes')) ?>">Ver todos atendimentos <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
+                <a href="<?= e(url('educacional/atendimentos-e-aprovacoes')) ?>">Ver todos atendimentos do período <?= e((string) ($attendance['semester'] ?? '')) ?> <i class="fa-solid fa-arrow-right" aria-hidden="true"></i></a>
                 <i class="fa-solid fa-arrow-right footer-trailing" aria-hidden="true"></i>
             </footer>
         </article>
@@ -166,7 +195,7 @@ $weekNumber = (int) date('W');
             </header>
 
             <div class="activity-list">
-                <?php foreach ($activities as $activity): ?>
+                <?php if ($activities): foreach ($activities as $activity): ?>
                     <div class="activity-row">
                         <time class="activity-date activity-date--<?= e($activity['tone']) ?>">
                             <strong><?= e($activity['day']) ?></strong>
@@ -178,7 +207,9 @@ $weekNumber = (int) date('W');
                             <span><?= e($activity['period']) ?></span>
                         </div>
                     </div>
-                <?php endforeach; ?>
+                <?php endforeach; else: ?>
+                    <div class="empty-state">Nenhuma próxima atividade cadastrada.</div>
+                <?php endif; ?>
             </div>
         </article>
     </div>
@@ -227,5 +258,6 @@ window.SELVAR_FACIAL = {
     modelUrl: 'https://cdn.jsdelivr.net/gh/justadudewhohacks/face-api.js@0.22.2/weights'
 };
 </script>
+<link rel="stylesheet" href="<?= e(asset('css/academic-courses.css')) ?>">
 <link rel="stylesheet" href="<?= e(asset('css/facial-enrollment.css')) ?>">
 <script src="<?= e(asset('js/facial-enrollment.js')) ?>" defer></script>

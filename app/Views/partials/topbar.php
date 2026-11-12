@@ -15,6 +15,15 @@ $avatar = trim((string)($u['avatar'] ?? $u['avatar_url'] ?? $u['photo_url'] ?? $
 $avatarDataUri = trim((string)($u['avatar_data_uri'] ?? ''));
 $activeContext = App\Core\Session::get('active_context', []);
 $activeContext = is_array($activeContext) ? $activeContext : [];
+$topbarPath = trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/');
+  $topbarLabels = [
+      'calendar' => 'Calendário',
+      'agenda' => 'Calendário',
+      'ava/gestao-de-cursos' => 'Gestão de Cursos',
+      'educacional/gestao-de-cursos' => 'Gestão de Cursos',
+      'ava/gestao-de-turmas' => 'Gestão de Turmas',
+  ];
+$topbarPageLabel = $topbarLabels[$topbarPath] ?? (ucfirst($topbarPath ?: 'Dashboard'));
 $avatarUrl = '';
 if ($avatarDataUri !== '' && preg_match('#^data:image/(jpeg|png|gif|webp);base64,[A-Za-z0-9+/=]+$#', $avatarDataUri)) $avatarUrl = $avatarDataUri;
 if ($avatar !== '') {
@@ -26,7 +35,7 @@ if ($avatar !== '') {
     <button class="icon-button mobile-menu" id="sidebar-toggle" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebar"><i class="fa-solid fa-bars" aria-hidden="true"></i></button>
     <div class="breadcrumbs">
         <span>FADIPA</span><b aria-hidden="true">›</b>
-        <strong><?= e(ucfirst(trim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH), '/') ?: 'Dashboard')) ?></strong>
+        <strong><?= e($topbarPageLabel) ?></strong>
     </div>
     <div class="top-search" aria-hidden="true"></div>
     <div class="top-actions">

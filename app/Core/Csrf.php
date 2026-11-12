@@ -7,6 +7,15 @@ final class Csrf {
         return (string)Session::get('_csrf');
     }
     public static function verify(?string $token): bool {
-        return is_string($token) && hash_equals(self::token(), $token);
+        if (!is_string($token) || $token === '') {
+            return false;
+        }
+
+        // A validação nunca deve criar um token. Ele precisa ter sido
+        // previamente gerado e armazenado durante a renderização do formulário.
+        $storedToken = Session::get('_csrf');
+        return is_string($storedToken)
+            && $storedToken !== ''
+            && hash_equals($storedToken, $token);
     }
 }

@@ -30,6 +30,9 @@ final class PageController extends Controller {
             'suporte/alterar-senha' => 'Alterar Senha',
             'suporte/cadastros' => 'Cadastros',
         ];
+        if ($path === 'backoffice/gestao-financeira') {
+            return $this->render('pages/gestao-financeira', ['title' => 'Gestão Financeira']);
+        }
         $title = $labels[$path] ?? ucfirst(str_replace('-', ' ', basename($path)));
         return $this->render('pages/placeholder', [
             'title' => $title,
