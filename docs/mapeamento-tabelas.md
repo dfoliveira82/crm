@@ -12,7 +12,7 @@ Cada entidade possui `table`, `columns` (chave lógica => coluna física) e, qua
 - `deals`: negócio, valor, estágio, data, responsável e status.
 - `bookings`: data, valor e categoria para série temporal.
 - `suggestions`: texto, prioridade, identificador e status. Sem `status` não há UPDATE; a dispensa fica na sessão.
-- `events`: título, início, fim e responsável.
+- `events`: título, início, fim, local e responsável.
 - `reps`: nome/código do vendedor para ranking.
 
 Cada model ignora entidades não configuradas e retorna coleção vazia ou `null`. Para implementar filtros de coligada/perfil, acrescente-os no model correspondente usando o `SessionUser`; nunca aceite o identificador do proprietário enviado pelo navegador.
