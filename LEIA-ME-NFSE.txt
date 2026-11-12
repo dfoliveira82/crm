@@ -1,0 +1,26 @@
+PROJETO CRM - INTEGRACAO NFS-e (ETAPA INICIAL)
+
+Este pacote contem o projeto completo, com a primeira etapa de entrada visual do modulo NFS-e aplicada.
+
+ACESSO
+1. Entre no sistema normalmente.
+2. Acesse Backoffice > Gestao Financeira.
+3. Clique no cartao "Notas Fiscais de Servico".
+
+ROTAS
+- /backoffice/gestao-financeira
+- /backoffice/gestao-financeira/nfse
+
+ARQUIVOS ALTERADOS NESTA ETAPA
+- app/Config/routes.php
+- app/Controllers/PageController.php
+- app/Views/pages/gestao-financeira.php (novo)
+- app/Views/pages/nfse.php (novo)
+- public/css/dashboard.css
+
+IMPORTANTE
+- Esta etapa implementa somente navegacao e estrutura visual.
+- Nao consulta baixas do TOTVS RM e nao emite NFS-e.
+- Nenhuma informacao e enviada a Prefeitura.
+- O arquivo .env original foi mantido no pacote para preservar a configuracao existente.
+- Faca backup da pasta atual antes de substituir os arquivos.

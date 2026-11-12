@@ -82,3 +82,13 @@ Todas as referências a tabelas e colunas ficam em `app/Config/tables.php`. Não
 - Fake: `APP_ENV=local`, `RM_FAKE=true`. Entre com qualquer usuário não vazio e senha com pelo menos 1 caractere. Nunca use essa configuração em produção.
 - RM real: `RM_FAKE=false`, configure endpoint, método, TLS e contrato de resposta. Teste com conta de homologação.
 - Banco: configure `.env` e `tables.php`; valide primeiro com usuário SQL somente leitura.
+
+## Módulo NFS-e (etapa de leitura do RM)
+
+- Acesse `/backoffice/gestao-financeira/nfse` pelo cartão em Gestão Financeira.
+- A conexão com o RM é independente da conexão principal do CRM e usa `RM_DB_HOST`, `RM_DB_PORT`, `RM_DB_NAME`, `RM_DB_USER`, `RM_DB_PASS`, `RM_DB_ENCRYPT` e `RM_DB_TRUST_SERVER_CERTIFICATE`.
+- Configure um login SQL dedicado com permissão somente de `SELECT` em `dbo.FLAN`, `dbo.FLANBAIXA` e `dbo.FCFO`. Não reutilize um usuário com permissão de escrita.
+- O painel consulta os 100 lançamentos mais recentes e soma baixas apenas para exibição exploratória quando `DATACANCELBAIXA IS NULL`. Isso **não** classifica quitação integral nem define base de cálculo da NFS-e.
+- Os códigos `PAGREC`, `STATUSLAN`, `STATUS` e `TIPOBAIXA` são apresentados sem interpretação automática. Precisam ser validados para esta instalação antes de automatizar qualquer emissão.
+- O script `database/004_nfse_rm_diagnostico.sql` contém a consulta de conferência e `database/005_nfse_codigos_rm.sql` agrupa os códigos encontrados. Ambos são somente leitura.
+- Nenhuma tabela financeira do RM é alterada e nenhuma nota é transmitida nesta etapa.

@@ -1,0 +1,19 @@
+MÓDULO NFS-e - ETAPA 2
+
+1) Faça backup do projeto atual.
+2) Substitua os arquivos pela versão deste pacote.
+3) No SQL Server, selecione o banco de dados da aplicação CRM/TotvsWEB.
+4) Execute o script database/004_nfse.sql.
+5) Acesse Backoffice > Gestão Financeira > Notas Fiscais de Serviço.
+
+O que esta etapa entrega:
+- Painel NFS-e com indicadores e fila de processamento.
+- Persistência própria para configurações, serviços, cobranças, baixas, fila, documentos, eventos e logs.
+- Chaves únicas para evitar duplicação de cobrança/baixa/fila.
+- Arquivo de configuração de mapeamento RM em app/Config/nfse.php.
+- Nenhuma escrita nas tabelas do TOTVS RM.
+
+A integração RM ainda permanece DESABILITADA até validar os campos reais no ambiente.
+A emissão junto à Prefeitura também não está habilitada nesta etapa.
+
+Documentação: docs/nfse-integracao.md

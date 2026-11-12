@@ -1,0 +1,64 @@
+================================================================================
+MÓDULO NFS-e - ETAPA 3: CONEXÃO REAL COM O TOTVS RM
+================================================================================
+
+1. O QUE FOI ENTREGUE NESTA ETAPA
+--------------------------------------------------------------------------------
+- Conexão REAL e SOMENTE DE LEITURA (SELECT) com o banco do TOTVS RM via PDO SQL Server.
+- Configurações centralizadas via variáveis de ambiente (.env):
+  RM_DB_HOST, RM_DB_PORT, RM_DB_DATABASE, RM_DB_USERNAME, RM_DB_PASSWORD, RM_DB_DRIVER.
+- Consulta e agregação das tabelas financeiras reais:
+  * dbo.FLAN (Lançamentos de Contas a Receber)
+  * dbo.FLANBAIXA (Baixas, valores pagos, juros, multas, descontos, estornos)
+  * dbo.FCFO (Cadastro do tomador: nome, CPF/CNPJ, endereço, e-mail)
+- Implementação rigorosa das regras de quitação:
+  * Suporte a MÚLTIPLAS BAIXAS para a mesma mensalidade.
+  * Validação de baixas ativas (DATACANCELBAIXA IS NULL).
+  * Lançamentos com quitação integral = SITUACAO 'QUITADO' e ELEGIVEL_EMISSAO = true.
+  * Lançamentos com pagamento parcial = SITUACAO 'PARCIAL' e ELEGIVEL_EMISSAO = false (bloqueado para NFS-e).
+  * Lançamentos cancelados ou com baixa cancelada = SITUACAO 'CANCELADO' e ELEGIVEL_EMISSAO = false.
+- Painel de Monitoramento com dados reais do RM:
+  * 6 Indicadores em tempo real (Total, Quitados, Parciais, Pendentes, Cancelados, Elegíveis para NFS-e).
+  * Barra de filtros completa (Vencimento De/Até, Coligada, Cliente, Situação financeira, Situação de emissão).
+  * Tabela com paginação no SQL Server (sub-segundo) e colunas detalhadas.
+  * Modal interativo com ficha cadastral do aluno/tomador e histórico de cada baixa.
+  * Botão de sincronização manual com feedback visual e tratamento de duplicidade.
+- Segurança e integridade:
+  * NENHUMA operação de escrita no TOTVS RM.
+  * Sincronização idempotente nas tabelas locais NFS_COBRANCA e NFS_BAIXAS com chave SHA-256.
+  * Logs técnicos e de auditoria em dbo.NFS_LOG.
+
+2. INSTRUÇÕES DE INSTALAÇÃO
+--------------------------------------------------------------------------------
+Passo 1: Faça backup da pasta atual do projeto.
+Passo 2: Substitua os arquivos pelos arquivos deste pacote.
+Passo 3: No SQL Server, selecione o banco de dados da aplicação CRM (onde residem as tabelas NFS_*).
+         Execute o script:
+         database/006_nfse_etapa3_atualizacao.sql
+         (Nota: caso ainda não tenha executado o script database/004_nfse.sql na versão anterior, execute-o primeiro).
+
+Passo 4: Edite o arquivo .env na raiz do projeto e configure as credenciais do TOTVS RM:
+         RM_DB_HOST=130.130.130.2
+         RM_DB_PORT=1433
+         RM_DB_DATABASE=CorporeRM
+         RM_DB_USERNAME=rm
+         RM_DB_PASSWORD=sua_senha
+         RM_DB_DRIVER=sqlsrv
+         RM_DB_ENCRYPT=true
+         RM_DB_TRUST_SERVER_CERTIFICATE=yes
+
+Passo 5: Acesse no navegador:
+         Menu Lateral -> Backoffice -> Gestão Financeira -> Notas Fiscais de Serviço
+         URL direta: /backoffice/gestao-financeira/nfse
+
+3. DOCUMENTAÇÃO TÉCNICA INCLUSA
+--------------------------------------------------------------------------------
+- docs/campos-totvs-rm.md           -> Lista de todos os campos do RM utilizados e suas finalidades.
+- docs/configuracao-conexao-rm.md   -> Guia de conexão, script SQL para usuário DBA e variáveis de ambiente.
+- docs/relatorio-etapa3.md          -> Relatório técnico completo de alterações e testes.
+- .env.example                      -> Arquivo modelo com todas as variáveis documentadas.
+
+4. PRÓXIMA ETAPA (ETAPA 4)
+--------------------------------------------------------------------------------
+Na Etapa 4 será implementada a configuração fiscal (CNPJ, Inscrição Municipal, Código de Serviço, Alíquota de ISS) e a comunicação e transmissão direta com o provedor de NFS-e da Prefeitura Municipal de Ipatinga/MG.
+================================================================================
